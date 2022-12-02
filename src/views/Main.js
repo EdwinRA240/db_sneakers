@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NestedModal from "../components/Modal";
 import NavBar from "../components/NavBar";
 import TableB from "../components/TableB";
 
