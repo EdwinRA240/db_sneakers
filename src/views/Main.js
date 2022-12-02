@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NestedModal from "../components/Modal";
 import NavBar from "../components/NavBar";
 import TableB from "../components/TableB";
 
@@ -6,12 +7,13 @@ const Main = () => {
   const [employees, setemployees] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/employees")
+    fetch("http://localhost:5000/EMPLEADO")
       .then((response) => {
         return response.json();
       })
       .then((responseJson) => {
         setemployees(responseJson);
+        console.log(responseJson);
       });
   }, []);
 
@@ -19,6 +21,7 @@ const Main = () => {
     <>
       <NavBar />
       <TableB data = {employees}/>
+      <NestedModal/>
     </>
   );
 };

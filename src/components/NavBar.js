@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Empleados", "Clientes", "Proveedores"];
+const settings = ["Account", "Cerrar sesion"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -89,7 +89,7 @@ function NavBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" component="a" href={`${page}`} variant="h6" >{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -99,7 +99,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/sneaker"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -119,8 +119,9 @@ function NavBar() {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
+                href={`/${page}`}
               >
-                {page}
+                {page} 2
               </Button>
             ))}
           </Box>
