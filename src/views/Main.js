@@ -21,7 +21,6 @@ const Main = () => {
     <>
       <NavBar />
       <TableB data = {employees}/>
-      <NestedModal/>
     </>
   );
 };
