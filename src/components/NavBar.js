@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import StorageIcon from "@mui/icons-material/Storage";
 
 const pages = ["Empleados", "Clientes", "Proveedores"];
 const settings = ["Account", "Cerrar sesion"];
@@ -39,7 +39,8 @@ function NavBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* NavBar Escritorio */}
+          <StorageIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -58,6 +59,7 @@ function NavBar() {
             DB_Sneaker
           </Typography>
 
+          {/* NavBar Mobile */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -69,6 +71,8 @@ function NavBar() {
             >
               <MenuIcon />
             </IconButton>
+
+            {/* Menu Mobile */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -88,18 +92,22 @@ function NavBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" component="a" href={`${page}`} variant="h6" >{page}</Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
+                  <Typography textAlign="center" variant="h6">
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
+          {/* Nav and Menu Escritorio */}
+          <StorageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="/sneaker"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -121,15 +129,16 @@ function NavBar() {
                 sx={{ my: 2, color: "white", display: "block" }}
                 href={`/${page}`}
               >
-                {page} 2
+                {page}
               </Button>
             ))}
           </Box>
 
+          {/* Ajustes */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" />
               </IconButton>
             </Tooltip>
             <Menu
