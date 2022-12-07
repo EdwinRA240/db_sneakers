@@ -7,10 +7,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
-// import DeleteIcon from "@mui/icons-material/Delete";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
-// import AlertDialog from "./AlertDialogDelete";
 import AlertDialogDelete from "./AlertDialogDelete";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function TableB(props) {
   return (
@@ -26,6 +25,11 @@ export default function TableB(props) {
               <TableCell align="center">CARGO</TableCell>
               <TableCell align="center">SUCURSAL</TableCell>
               <TableCell align="center">DIRECCION</TableCell>
+              <TableCell align="center">
+                <IconButton href="/Empleados/Insert">
+                  <AddIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,7 +49,7 @@ export default function TableB(props) {
                   <AlertDialogDelete data={e} />
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton href = "/Empleados/Insert">
+                  <IconButton href="/Empleados/Insert">
                     <UpgradeIcon />
                   </IconButton>
                 </TableCell>

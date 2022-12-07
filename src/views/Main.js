@@ -11,13 +11,14 @@ const Main = () => {
           component="a"
           href="/empleados"
           sx={{
+            mt: 2,
             mr: 2,
             display: { md: "flex" },
             fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
             color: "inherit",
-            textDecoration: "none",
+            textDecoration: "none"
           }}
         >
           Bienvenido -{">"} LOGIN
