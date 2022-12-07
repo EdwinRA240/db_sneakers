@@ -7,8 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
+// import AlertDialog from "./AlertDialogDelete";
+import AlertDialogDelete from "./AlertDialogDelete";
 
 export default function TableB(props) {
   return (
@@ -18,10 +20,11 @@ export default function TableB(props) {
           <TableHead>
             <TableRow>
               <TableCell align="center">NOMBRE</TableCell>
-              <TableCell align="center">APELLIDO_PAT</TableCell>
+              <TableCell align="center">A.PATERNO</TableCell>
+              <TableCell align="center">A.MATERNO</TableCell>
               <TableCell align="center">CORREO</TableCell>
-              <TableCell align="center">CARGO_EPL_ID</TableCell>
-              <TableCell align="center">SUCURSAL_CLAVE</TableCell>
+              <TableCell align="center">CARGO</TableCell>
+              <TableCell align="center">SUCURSAL</TableCell>
               <TableCell align="center">DIRECCION</TableCell>
             </TableRow>
           </TableHead>
@@ -35,27 +38,15 @@ export default function TableB(props) {
                 <TableCell align="center">{e.APELLIDO_PAT}</TableCell>
                 <TableCell align="center">{e.APELLIDO_MAT}</TableCell>
                 <TableCell align="center">{e.CORREO}</TableCell>
-                <TableCell align="center">{e.CARGO_EPL_ID}</TableCell>
-                <TableCell align="center">{e.SUCURSAL_CLAVE}</TableCell>
-                <TableCell align="center">{e.DIRECCION}</TableCell>
+                <TableCell align="center">{e.CARGO}</TableCell>
+                <TableCell align="center">{e.NOMBRE_S}</TableCell>
+                <TableCell align="center">{e.ESTADO}</TableCell>
                 <TableCell align="center">
-                  <IconButton
-                    aria-label="delete"
-                    href="/.........."
-                    onClick={() => {
-                      console.log("save");
-                    }}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
+                  <AlertDialogDelete data={e} />
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton>
-                    <UpgradeIcon
-                      onClick={() => {
-                        console.log(e.CLAVE);
-                      }}
-                    />
+                  <IconButton href = "/Empleados/Insert">
+                    <UpgradeIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>
