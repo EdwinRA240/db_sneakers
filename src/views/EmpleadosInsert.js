@@ -1,7 +1,7 @@
 import { Button, FormGroup, TextField, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { React, useEffect, useState } from "react";
-import FormControl from "../components/FormControl";
+import FormControlEstados from "../components/FormControlEstados";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 
 const EmpleadosInsert = () => {
@@ -43,21 +43,41 @@ const EmpleadosInsert = () => {
       });
   }, []);
 
-  const handleInsert = (event) => {
-    console.log(Data);
+  const handleSetData = () => {
+    setData({
+      ID: "DIR70",
+      ESTADO_ID: parseInt(Estado),
+      ALCAL_MUN: Municipio,
+      CODIGO_POSTAL: parseInt(Codigo_Postal),
+      CALLE: Calle,
+      NUMERO_EXT: parseInt(No_Exterior),
+      NUMERO_INT: parseInt(No_Interior),
+    });
+    console.log(JSON.stringify(Data));
+
+    fetch("http://localhost:5000/direccion", {
+      method: "POST",
+      body: JSON.stringify(Data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then((response) => console.log("Success:", response));
   };
 
   return (
     <>
       <Container maxWidth="sm" sx={{ py: 4 }}>
         <FormGroup
-          onClick={handleInsert}
-          // onChange={() => {
-          //   console.log(Data);
-          // }}
+        // onClick={handleInsert}
+        // onChange={() => {
+        //   console.log(Data);
+        // }}
         >
           <Typography>DIRECCION</Typography>
-          <FormControl
+          <FormControlEstados
             nombre={"Estado"}
             opciones={Estados.rows}
             onChange={(event) => setEstado(event.target.value)}
@@ -101,17 +121,7 @@ const EmpleadosInsert = () => {
             sx={{ mt: 1 }}
             variant="contained"
             endIcon={<UpgradeIcon />}
-            onClick={() => {
-              setData({
-                ID: "DIR1",
-                ESTADO_ID: Estado,
-                ALCAL_MUN: Municipio,
-                CODIGO_POSTAL: Codigo_Postal,
-                CALLE: Calle,
-                NUMERO_EXT: No_Exterior,
-                NUMERO_INT: No_Interior,
-              });
-            }}
+            onClick={handleSetData}
           >
             Insert
           </Button>

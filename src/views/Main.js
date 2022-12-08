@@ -1,8 +1,22 @@
-import React from "react";
+import {React} from "react";
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 
 const Main = () => {
+  // const [Res, setRes] = useState({});
+  
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/")
+  //         .then((response) => {
+  //           return response.json();
+  //         })
+  //         .then((responseJson) => {
+  //           setRes(responseJson);
+  //           console.log(responseJson);
+  //         })
+  // }, []);
+  
+
   return (
     <>
       <Container maxWidth="sm">
@@ -18,7 +32,7 @@ const Main = () => {
             fontWeight: 700,
             letterSpacing: ".3rem",
             color: "inherit",
-            textDecoration: "none"
+            textDecoration: "none",
           }}
         >
           Bienvenido -{">"} LOGIN
