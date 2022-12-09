@@ -9,15 +9,14 @@ import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import AlertDialogDeleteDireccion from "./AlertDialogDeleteDireccion";
-import RefreshIcon from '@mui/icons-material/Refresh';
+import RefreshIcon from "@mui/icons-material/Refresh";
 import AlertDialogAddDireccion from "./AlertDialogAddDireccion";
 
 export default function TableDireccion(props) {
-
-  const handleRefresh =( ) => {
+  const handleRefresh = () => {
     window.location.reload(false);
   };
-  
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <TableContainer component={Paper}>
@@ -31,11 +30,13 @@ export default function TableDireccion(props) {
               <TableCell align="center">NUMERO EXT</TableCell>
               <TableCell align="center">NUMERO INT</TableCell>
               <TableCell align="center">
-                <AlertDialogAddDireccion data={props.data.rows}/>
+                <AlertDialogAddDireccion data={props.data.rows} />
               </TableCell>
+              {console.log(props.data.rows)}
+              
               <TableCell align="center">
-                <IconButton onClick = {handleRefresh}>
-                  <RefreshIcon/>
+                <IconButton onClick={handleRefresh}>
+                  <RefreshIcon />
                 </IconButton>
               </TableCell>
             </TableRow>
@@ -53,7 +54,7 @@ export default function TableDireccion(props) {
                 <TableCell align="center">{e.NUMERO_EXT}</TableCell>
                 <TableCell align="center">{e.NUMERO_INT}</TableCell>
                 <TableCell align="center">
-                  <AlertDialogDeleteDireccion data={e}/>
+                  <AlertDialogDeleteDireccion data={e} />
                 </TableCell>
                 <TableCell align="center">
                   <IconButton href="/Empleados/Insert">

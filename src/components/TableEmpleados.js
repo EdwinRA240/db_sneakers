@@ -8,10 +8,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
-import AlertDialogDelete from "./AlertDialogDelete";
+import AlertDialogDeleteEmpleado from "./AlertDialogDeleteEmpleado";
 import AddIcon from "@mui/icons-material/Add";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 export default function TableB(props) {
+  const handleRefresh = () => {
+    window.location.reload(false);
+  };
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <TableContainer component={Paper}>
@@ -30,6 +34,11 @@ export default function TableB(props) {
                   <AddIcon />
                 </IconButton>
               </TableCell>
+              <TableCell align="center">
+                <IconButton onClick = {handleRefresh}>
+                  <RefreshIcon/>
+                </IconButton>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -46,7 +55,7 @@ export default function TableB(props) {
                 <TableCell align="center">{e.NOMBRE_S}</TableCell>
                 <TableCell align="center">{e.ESTADO}</TableCell>
                 <TableCell align="center">
-                  <AlertDialogDelete data={e} />
+                  <AlertDialogDeleteEmpleado data={e} />
                 </TableCell>
                 <TableCell align="center">
                   <IconButton href="/Empleados/Insert">

@@ -1,16 +1,12 @@
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { Button, FormGroup, TextField, Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Button, FormGroup, TextField, } from "@mui/material";
 import { React, useEffect, useState } from "react";
 import FormControlEstados from "../components/FormControlEstados";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
-
 
 export default function AlertDialogAddDireccion(props) {
   const [open, setOpen] = useState(false);
@@ -50,20 +46,20 @@ export default function AlertDialogAddDireccion(props) {
     setOpen(false);
   };
 
-  const handleDelete = () => {
-    fetch("http://localhost:5000/direccion", {
-      method: "DELETE",
-      body: JSON.stringify(props.data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error("Error:", error))
-      .then((response) => console.log("Success:", response));
+  // const handleDelete = () => {
+  //   fetch("http://localhost:5000/direccion", {
+  //     method: "DELETE",
+  //     body: JSON.stringify(props.data),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .catch((error) => console.error("Error:", error))
+  //     .then((response) => console.log("Success:", response));
 
-    handleClose();
-  };
+  //   handleClose();
+  // };
 
   const handleSetData = () => {
     setData({
@@ -86,7 +82,8 @@ export default function AlertDialogAddDireccion(props) {
     })
       .then((res) => res.json())
       .catch((error) => console.error("Error:", error))
-      .then((response) => console.log("Success:", response));
+      .then((response) => {console.log("Success:", response); handleClose();});
+    
   };
 
   return (
@@ -99,74 +96,57 @@ export default function AlertDialogAddDireccion(props) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        fullWidth={true}
+        maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">Confirmacion</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Agregar una nueva direccion</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            ¿Esta seguro de eliminar la direccion del estado {props.data.ESTADO_ID}?
-            <Container maxWidth="sm" sx={{ py: 4 }}>
-              <FormGroup
-              // onClick={handleInsert}
-              // onChange={() => {
-              //   console.log(Data);
-              // }}
-              >
-                <Typography>DIRECCION</Typography>
-                <FormControlEstados
-                  nombre={"Estado"}
-                  opciones={Estados.rows}
-                  onChange={(event) => setEstado(event.target.value)}
-                />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2 }}
-                  label="Alcaldia/Municipio"
-                  id="Municipio"
-                  onChange={(event) => setMunicipio(event.target.value)}
-                />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2 }}
-                  onChange={(event) => setCodigo_Postal(event.target.value)}
-                  label="Codigo Postal"
-                  id="Codigo_Postal"
-                />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2 }}
-                  label="Calle"
-                  id="Calle"
-                  onChange={(event) => setCalle(event.target.value)}
-                />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2 }}
-                  label="No. Exterior"
-                  id="No_Exterior"
-                  onChange={(event) => setNo_Exterior(event.target.value)}
-                />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2 }}
-                  label="No. Interior"
-                  id="No_Interior"
-                  onChange={(event) => setNo_Interior(event.target.value)}
-                />
-                <Button
-                  sx={{ mt: 1 }}
-                  variant="contained"
-                  endIcon={<UpgradeIcon />}
-                  onClick={handleSetData}
-                >
-                  Insert
-                </Button>
-              </FormGroup>
-            </Container>
-          </DialogContentText>
+          <FormGroup>
+            <FormControlEstados
+              nombre={"Estado"}
+              opciones={Estados.rows}
+              onChange={(event) => setEstado(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label="Alcaldia/Municipio"
+              id="Municipio"
+              onChange={(event) => setMunicipio(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              onChange={(event) => setCodigo_Postal(event.target.value)}
+              label="Codigo Postal"
+              id="Codigo_Postal"
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label="Calle"
+              id="Calle"
+              onChange={(event) => setCalle(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label="No. Exterior"
+              id="No_Exterior"
+              onChange={(event) => setNo_Exterior(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label="No. Interior"
+              id="No_Interior"
+              onChange={(event) => setNo_Interior(event.target.value)}
+            />
+          </FormGroup>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleDelete} autoFocus>
+          <Button onClick={handleSetData} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
