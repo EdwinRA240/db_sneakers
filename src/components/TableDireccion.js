@@ -7,10 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
 import AlertDialogDeleteDireccion from "./AlertDialogDeleteDireccion";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AlertDialogAddDireccion from "./AlertDialogAddDireccion";
+import AlertDialogUpdateDireccion from "./AlertDialogUpdateDireccion";
 
 export default function TableDireccion(props) {
   const handleRefresh = () => {
@@ -32,8 +32,6 @@ export default function TableDireccion(props) {
               <TableCell align="center">
                 <AlertDialogAddDireccion data={props.data.rows} />
               </TableCell>
-              {console.log(props.data.rows)}
-              
               <TableCell align="center">
                 <IconButton onClick={handleRefresh}>
                   <RefreshIcon />
@@ -57,9 +55,7 @@ export default function TableDireccion(props) {
                   <AlertDialogDeleteDireccion data={e} />
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton href="/Empleados/Insert">
-                    <UpgradeIcon />
-                  </IconButton>
+                  <AlertDialogUpdateDireccion data={e}/>
                 </TableCell>
               </TableRow>
             ))}

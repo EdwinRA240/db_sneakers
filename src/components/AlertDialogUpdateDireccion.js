@@ -3,12 +3,12 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
 import FormControlEstados from "../components/FormControlEstados";
 
-export default function AlertDialogAddDireccion() {
+export default function AlertDialogUpdateDireccion(props) {
   const [open, setOpen] = useState(false);
   const [Estados, setEstados] = useState([]);
   const [Estado, setEstado] = useState(1);
@@ -19,7 +19,7 @@ export default function AlertDialogAddDireccion() {
   const [No_Interior, setNo_Interior] = useState("");
   // const [DatosHijo, setDatosHijo] = useState("");
   const [Data, setData] = useState({
-    ID: "",
+    ID: props.data.ID,
     ESTADO_ID: "",
     ALCAL_MUN: "",
     CODIGO_POSTAL: "",
@@ -53,7 +53,7 @@ export default function AlertDialogAddDireccion() {
 
   const handleSetData = () => {
     setData({
-      ID: "DIR",
+      ID: props.data.ID,
       ESTADO_ID: parseInt(Estado),
       ALCAL_MUN: Municipio,
       CODIGO_POSTAL: parseInt(Codigo_Postal),
@@ -61,10 +61,10 @@ export default function AlertDialogAddDireccion() {
       NUMERO_EXT: parseInt(No_Exterior),
       NUMERO_INT: parseInt(No_Interior),
     });
-    // console.log(JSON.stringify(Data));
+    console.log(JSON.stringify(Data));
 
     fetch("http://localhost:5000/direccion", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(Data),
       headers: {
         "Content-Type": "application/json",
@@ -75,14 +75,14 @@ export default function AlertDialogAddDireccion() {
       .then((response) => {
         console.log("Success:", response);
         handleClose();
-        window.location.reload(false); //refresh
+        window.location.reload(false);
       });
   };
 
   return (
     <>
-      <IconButton aria-label="delete" onClick={handleClickOpen}>
-        <AddIcon />
+      <IconButton aria-label="Update" onClick={handleClickOpen}>
+        <UpgradeIcon />
       </IconButton>
       <Dialog
         open={open}
@@ -97,42 +97,44 @@ export default function AlertDialogAddDireccion() {
         <DialogContent>
           <FormGroup>
             <FormControlEstados
-              nombre={"Estado"}
+              nombre={props.data.ESTADO_ID}
               opciones={Estados.rows}
-              funcion={(hijo)=> {setEstado(hijo)}}
+              funcion={(hijo) => {
+                setEstado(hijo);
+              }}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Alcaldia/Municipio"
-              id="Municipio"
+              label={props.data.ALCAL_MUN}
+              // id="Municipio"
               onChange={(event) => setMunicipio(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
               onChange={(event) => setCodigo_Postal(event.target.value)}
-              label="Codigo Postal"
-              id="Codigo_Postal"
+              label={props.data.CODIGO_POSTAL}
+              // id="Codigo_Postal"
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Calle"
+              label={props.data.CALLE}
               id="Calle"
               onChange={(event) => setCalle(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="No. Exterior"
+              label={props.data.NUMERO_EXT}
               id="No_Exterior"
               onChange={(event) => setNo_Exterior(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="No. Interior"
+              label={props.data.NUMERO_INT}
               id="No_Interior"
               onChange={(event) => setNo_Interior(event.target.value)}
             />

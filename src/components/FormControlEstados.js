@@ -5,12 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect(props) {
-  const [value, setvalue] = React.useState("");
+export default function FormControlEstados(props) {
+  const [value, setvalue] = React.useState(1);
 
-  const handleChange = (event) => {
-    setvalue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setvalue(event.target.value);
+  //   props.hijoAPadre(value);
+  // };
 
   return (
     <Box sx={{ minWidth: 120, mt: 2 }}>
@@ -21,10 +22,16 @@ export default function BasicSelect(props) {
           id="demo-simple-select"
           value={value}
           label={props.nombre}
-          onChange={handleChange}
+          onChange={(event) => {
+            setvalue(event.target.value);
+            props.funcion(value);
+          }}
         >
-          {props.opciones?.map((e)=> (<MenuItem value={e.ID}>{e.ESTADO}</MenuItem>)
-          )}
+          {props.opciones?.map((e) => (
+            <MenuItem value={e.ID} key={e.ID}>
+              {e.ESTADO}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

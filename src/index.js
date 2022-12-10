@@ -6,13 +6,15 @@ import Main from "./views/Main";
 import NavBar from "./components/NavBar";
 import EmpleadosInsert from "./views/EmpleadosInsert";
 import Direccion from "./views/Direccion";
+import NotFound from "./views/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <NavBar />
     <BrowserRouter>
-      <NavBar />
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Main />} />
         <Route path="/Empleados" element={<Empleados />} />
         <Route path="/Empleados/Insert" element={<EmpleadosInsert />} />

@@ -11,7 +11,7 @@ const Direccion = () => {
       })
       .then((responseJson) => {
         setDirecciones(responseJson);
-        console.log(responseJson);
+        // console.log(responseJson);
       });
   }, []);
 
