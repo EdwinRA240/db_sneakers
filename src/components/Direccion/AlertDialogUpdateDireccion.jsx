@@ -107,7 +107,7 @@ export default function AlertDialogUpdateDireccion(props) {
               fullWidth
               sx={{ mt: 2 }}
               label={props.data.ALCAL_MUN}
-              // id="Municipio"
+              id="Municipio"
               onChange={(event) => setMunicipio(event.target.value)}
             />
             <TextField
@@ -115,7 +115,7 @@ export default function AlertDialogUpdateDireccion(props) {
               sx={{ mt: 2 }}
               onChange={(event) => setCodigo_Postal(event.target.value)}
               label={props.data.CODIGO_POSTAL}
-              // id="Codigo_Postal"
+              id="Codigo_Postal"
             />
             <TextField
               fullWidth

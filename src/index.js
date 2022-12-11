@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import Direccion from "./views/Direccion";
 import NotFound from "./views/NotFound";
 import Modelo from "./views/Modelo";
+import Marca from "./views/Marca";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         {/* <Route path="/Empleados/Insert" element={<EmpleadosInsert />} /> */}
         <Route path="/Direccion" element={<Direccion />} />
         <Route path="/Modelo" element={<Modelo />} />
+        <Route path="/Marca" element={<Marca />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -26,6 +26,10 @@ export default function FormControlEstados(props) {
             setvalue(event.target.value);
             props.funcion(value);
           }}
+          onClick={(event) => {
+            // setvalue(event.target.value);
+            props.funcion(value);
+          }}
         >
           {props.opciones?.map((e) => (
             <MenuItem value={e.ID} key={e.ID}>
