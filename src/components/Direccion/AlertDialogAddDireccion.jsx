@@ -3,12 +3,12 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
+import AddIcon from "@mui/icons-material/Add";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import FormControlEstados from "../components/FormControlEstados";
+import FormControlEstados from "../Form´s/FormControlEstados";
 
-export default function AlertDialogUpdateDireccion(props) {
+export default function AlertDialogAddDireccion() {
   const [open, setOpen] = useState(false);
   const [Estados, setEstados] = useState([]);
   const [Estado, setEstado] = useState(1);
@@ -19,7 +19,7 @@ export default function AlertDialogUpdateDireccion(props) {
   const [No_Interior, setNo_Interior] = useState("");
   // const [DatosHijo, setDatosHijo] = useState("");
   const [Data, setData] = useState({
-    ID: props.data.ID,
+    ID: "",
     ESTADO_ID: "",
     ALCAL_MUN: "",
     CODIGO_POSTAL: "",
@@ -53,7 +53,7 @@ export default function AlertDialogUpdateDireccion(props) {
 
   const handleSetData = () => {
     setData({
-      ID: props.data.ID,
+      ID: "DIR",
       ESTADO_ID: parseInt(Estado),
       ALCAL_MUN: Municipio,
       CODIGO_POSTAL: parseInt(Codigo_Postal),
@@ -61,10 +61,10 @@ export default function AlertDialogUpdateDireccion(props) {
       NUMERO_EXT: parseInt(No_Exterior),
       NUMERO_INT: parseInt(No_Interior),
     });
-    console.log(JSON.stringify(Data));
+    // console.log(JSON.stringify(Data));
 
     fetch("http://localhost:5000/direccion", {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify(Data),
       headers: {
         "Content-Type": "application/json",
@@ -75,14 +75,14 @@ export default function AlertDialogUpdateDireccion(props) {
       .then((response) => {
         console.log("Success:", response);
         handleClose();
-        window.location.reload(false);
+        window.location.reload(false); //refresh
       });
   };
 
   return (
     <>
-      <IconButton aria-label="Update" onClick={handleClickOpen}>
-        <UpgradeIcon />
+      <IconButton aria-label="delete" onClick={handleClickOpen}>
+        <AddIcon />
       </IconButton>
       <Dialog
         open={open}
@@ -97,44 +97,42 @@ export default function AlertDialogUpdateDireccion(props) {
         <DialogContent>
           <FormGroup>
             <FormControlEstados
-              nombre={props.data.ESTADO_ID}
+              nombre={"Estado"}
               opciones={Estados.rows}
-              funcion={(hijo) => {
-                setEstado(hijo);
-              }}
+              funcion={(hijo)=> {setEstado(hijo)}}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.ALCAL_MUN}
-              // id="Municipio"
+              label="Alcaldia/Municipio"
+              id="Municipio"
               onChange={(event) => setMunicipio(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
               onChange={(event) => setCodigo_Postal(event.target.value)}
-              label={props.data.CODIGO_POSTAL}
-              // id="Codigo_Postal"
+              label="Codigo Postal"
+              id="Codigo_Postal"
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.CALLE}
+              label="Calle"
               id="Calle"
               onChange={(event) => setCalle(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.NUMERO_EXT}
+              label="No. Exterior"
               id="No_Exterior"
               onChange={(event) => setNo_Exterior(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.NUMERO_INT}
+              label="No. Interior"
               id="No_Interior"
               onChange={(event) => setNo_Interior(event.target.value)}
             />

@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import StorageIcon from "@mui/icons-material/Storage";
 
-const pages = ["Empleados", "Direccion", "Proveedores"];
-const settings = ["Account", "Cerrar sesion"];
+const pages = ["Empleados", "Direccion", "Modelo"];
+const settings = ["Cuenta", "Cerrar sesion"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

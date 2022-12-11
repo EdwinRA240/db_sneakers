@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TableDireccion from "../components/TableDireccion";
+import TableDireccion from "../components/Direccion/TableDireccion";
 
 const Direccion = () => {
   const [Direcciones, setDirecciones] = useState([]);
@@ -11,7 +11,6 @@ const Direccion = () => {
       })
       .then((responseJson) => {
         setDirecciones(responseJson);
-        // console.log(responseJson);
       });
   }, []);
 

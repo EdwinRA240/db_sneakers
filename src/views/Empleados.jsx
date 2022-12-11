@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TableB from "../components/TableEmpleados";
+import TableB from "../components/Empleado/TableEmpleados";
 
 const Empleados = () => {
   const [Empleados, setEmpleados] = useState([]);
