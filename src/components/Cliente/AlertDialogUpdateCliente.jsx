@@ -7,9 +7,10 @@ import { IconButton } from "@mui/material";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-// import FormControlEstados from "../Form´s/FormControlEstados";
+import FormControlDireccion from "../Form's/FormControlDireccion";
 
 export default function AlertDialogUpdateDireccion(props) {
+  const [Direcciones, setDirecciones] = useState([]);
   const [Dir, setDir] = useState([]);
   const [Nombre, setNombre] = useState(1);
   const [ApellidoP, setApellidoP] = useState("");
@@ -32,7 +33,7 @@ export default function AlertDialogUpdateDireccion(props) {
         return response.json();
       })
       .then((responseJson) => {
-        setDir(responseJson);
+        setDirecciones(responseJson);
         // console.log(responseJson);
       });
   }, []);
@@ -87,17 +88,11 @@ export default function AlertDialogUpdateDireccion(props) {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        {/* {console.log(DatosHijo)} */}
         <DialogTitle id="alert-dialog-title">
           Modificar a cliente llamado {props.data.NOMBRE}
         </DialogTitle>
         <DialogContent>
           <FormGroup>
-            {/* <FormControlEstados
-              nombre={"Estado"}
-              opciones={Estados.rows}
-              funcion={(hijo)=> {setEstado(hijo)}}
-            /> */}
             <TextField
               fullWidth
               sx={{ mt: 2 }}
@@ -122,12 +117,10 @@ export default function AlertDialogUpdateDireccion(props) {
               label={props.data.CORREO}
               onChange={(event) => setCorreo(event.target.value)}
             />
-            <TextField
-              fullWidth
-              sx={{ mt: 2 }}
-              // label={props.data.DIRECCION_ID}
-              label="DIRECCION_ID"
-              onChange={(event) => setDir(event.target.value)}
+            <FormControlDireccion
+              nombre={"Codigo Postal"}
+              opciones={Direcciones.rows}
+              funcion={(hijo)=> {setDir(hijo)}}
             />
           </FormGroup>
         </DialogContent>
