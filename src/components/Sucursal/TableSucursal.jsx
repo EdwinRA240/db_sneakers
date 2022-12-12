@@ -52,9 +52,10 @@ export default function TableSucursal(props) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="center">{e.NOMBRE}</TableCell>
-                <TableCell align="center">{e.APELLIDO_PAT}</TableCell>
-                <TableCell align="center">{e.APELLIDO_MAT}</TableCell>
-                <TableCell align="center">{e.CORREO}</TableCell>
+                <TableCell align="center">{e.PAGINA_WEB}</TableCell>
+                <TableCell align="center">{e.LADA}</TableCell>
+                <TableCell align="center">{e.NUMERO_TEL}</TableCell>
+                <TableCell align="center">{e.EXTENSION}</TableCell>
                 <TableCell align="center">{e.CODIGO_POSTAL}</TableCell>
                 <TableCell align="center">
                   <AlertDialogDelete data={e} />

@@ -20,7 +20,7 @@ export default function AlertDialogDeleteDireccion(props) {
   };
 
   const handleDelete = () => {
-    fetch("http://localhost:5000/cliente", {
+    fetch("http://localhost:5000/Sucursal", {
       method: "DELETE",
       body: JSON.stringify(props.data),
       headers: {
@@ -49,7 +49,7 @@ export default function AlertDialogDeleteDireccion(props) {
         <DialogTitle id="alert-dialog-title">Confirmacion</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            ¿Esta seguro de eliminar a el cliente {props.data.NOMBRE}?
+            ¿Esta seguro de eliminar la sucursal {props.data.NOMBRE}?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

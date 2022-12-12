@@ -11,20 +11,22 @@ import FormControlDireccion from "../Form's/FormControlDireccion";
 
 export default function AlertDialogUpdateDireccion(props) {
   const [Direcciones, setDirecciones] = useState([]);
-  const [Dir, setDir] = useState([]);
   const [Nombre, setNombre] = useState(1);
-  const [ApellidoP, setApellidoP] = useState("");
-  const [ApellidoM, setApellidoM] = useState("");
-  const [Correo, setCorreo] = useState("");
-  // const [Alcal_Mun, setAlcal_Mun] = useState("");
+  const [Pagina_Web, setPagina_Web] = useState("");
+  const [Lada, setLada] = useState("");
+  const [Numero_Tel, setNumero_Tel] = useState("");
+  const [Extension, setExtension] = useState("");
+  const [Dir, setDir] = useState([]);
+
   const [open, setOpen] = useState(false);
   const [Data, setData] = useState({
     CLAVE: "",
     NOMBRE: "",
-    APELLIDO_PAT: "",
-    APELLIDO_MAT: "",
-    CORREO: "",
-    ID: "",
+    PAGINA_WEB: "",
+    LADA: "",
+    NUMERO_TEL: "",
+    EXTENSION: "",
+    ID_DIR: "",
   });
 
   useEffect(() => {
@@ -50,14 +52,15 @@ export default function AlertDialogUpdateDireccion(props) {
     setData({
       CLAVE: props.data.CLAVE,
       NOMBRE: Nombre,
-      APELLIDO_PAT: ApellidoP,
-      APELLIDO_MAT: ApellidoM,
-      CORREO: Correo,
+      PAGINA_WEB: Pagina_Web,
+      LADA: parseInt(Lada),
+      NUMERO_TEL: parseInt(Numero_Tel),
+      EXTENSION: parseInt(Extension),
       ID_DIR: Dir,
     });
     console.log(Data);
 
-    fetch("http://localhost:5000/Cliente", {
+    fetch("http://localhost:5000/Sucursal", {
       method: "PUT",
       body: JSON.stringify(Data),
       headers: {
@@ -68,10 +71,8 @@ export default function AlertDialogUpdateDireccion(props) {
       .catch((error) => console.error("Error:", error))
       .then((response) => {
         console.log("Success:", response);
-        if (response.rowsAffected == 1) {
-          handleClose();
-          window.location.reload(false); //refresh
-        }
+        handleClose();
+        window.location.reload(false); //refresh
       });
   };
 
@@ -88,9 +89,8 @@ export default function AlertDialogUpdateDireccion(props) {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">
-          Modificar a cliente llamado {props.data.NOMBRE}
-        </DialogTitle>
+        {/* {console.log(DatosHijo)} */}
+        <DialogTitle id="alert-dialog-title">Agregar un nueva sucursal</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
@@ -102,25 +102,33 @@ export default function AlertDialogUpdateDireccion(props) {
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.APELLIDO_PAT}
-              onChange={(event) => setApellidoP(event.target.value)}
+              label={props.data.PAGINA_WEB}
+              onChange={(event) => setPagina_Web(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.APELLIDO_MAT}
-              onChange={(event) => setApellidoM(event.target.value)}
+              label={props.data.LADA}
+              onChange={(event) => setLada(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.CORREO}
-              onChange={(event) => setCorreo(event.target.value)}
+              label={props.data.NUMERO_TEL}
+              onChange={(event) => setNumero_Tel(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label={props.data.EXTENSION}
+              onChange={(event) => setExtension(event.target.value)}
             />
             <FormControlDireccion
-              nombre={"Codigo Postal"}
+              nombre={props.data.CODIGO_POSTAL}
               opciones={Direcciones.rows}
-              funcion={(hijo)=> {setDir(hijo)}}
+              funcion={(hijo) => {
+                setDir(hijo);
+              }}
             />
           </FormGroup>
         </DialogContent>

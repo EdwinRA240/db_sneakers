@@ -10,22 +10,24 @@ import FormControlDireccion from "../Form's/FormControlDireccion";
 
 export default function AlertDialogAddDireccion() {
   const [Direcciones, setDirecciones] = useState([]);
-  const [Dir, setDir] = useState([]);
   const [Nombre, setNombre] = useState(1);
-  const [ApellidoP, setApellidoP] = useState("");
-  const [ApellidoM, setApellidoM] = useState("");
-  const [Correo, setCorreo] = useState("");
-  // const [Alcal_Mun, setAlcal_Mun] = useState("");
+  const [Pagina_Web, setPagina_Web] = useState("");
+  const [Lada, setLada] = useState("");
+  const [Numero_Tel, setNumero_Tel] = useState("");
+  const [Extension, setExtension] = useState("");
+  const [Dir, setDir] = useState([]);
+
   const [open, setOpen] = useState(false);
   const [Data, setData] = useState({
     CLAVE: "",
     NOMBRE: "",
-    APELLIDO_PAT: "",
-    APELLIDO_MAT: "",
-    CORREO: "",
-    ID: "",
+    PAGINA_WEB: "",
+    LADA: "",
+    NUMERO_TEL: "",
+    EXTENSION: "",
+    ID_DIR: "",
   });
-  
+
   useEffect(() => {
     fetch("http://localhost:5000/direccion")
       .then((response) => {
@@ -47,16 +49,17 @@ export default function AlertDialogAddDireccion() {
 
   const handleSetData = () => {
     setData({
-      CLAVE: "CL",
+      CLAVE: "",
       NOMBRE: Nombre,
-      APELLIDO_PAT: ApellidoP,
-      APELLIDO_MAT: ApellidoM,
-      CORREO: Correo,
+      PAGINA_WEB: Pagina_Web,
+      LADA: parseInt(Lada),
+      NUMERO_TEL: parseInt(Numero_Tel),
+      EXTENSION: parseInt(Extension),
       ID_DIR: Dir,
     });
     console.log(Data);
 
-    fetch("http://localhost:5000/Cliente", {
+    fetch("http://localhost:5000/Sucursal", {
       method: "POST",
       body: JSON.stringify(Data),
       headers: {
@@ -86,7 +89,7 @@ export default function AlertDialogAddDireccion() {
         maxWidth={"sm"}
       >
         {/* {console.log(DatosHijo)} */}
-        <DialogTitle id="alert-dialog-title">Agregar un nuevo cliente</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Agregar un nueva sucursal</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
@@ -98,25 +101,33 @@ export default function AlertDialogAddDireccion() {
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              onChange={(event) => setApellidoP(event.target.value)}
-              label="ApellidoP"
+              onChange={(event) => setPagina_Web(event.target.value)}
+              label="Pagina_Web"
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="ApellidoM"
-              onChange={(event) => setApellidoM(event.target.value)}
+              label="Lada"
+              onChange={(event) => setLada(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Correo"
-              onChange={(event) => setCorreo(event.target.value)}
+              label="Numero_Tel"
+              onChange={(event) => setNumero_Tel(event.target.value)}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              label="Extension"
+              onChange={(event) => setExtension(event.target.value)}
             />
             <FormControlDireccion
               nombre={"Codigo Postal"}
               opciones={Direcciones.rows}
-              funcion={(hijo)=> {setDir(hijo)}}
+              funcion={(hijo) => {
+                setDir(hijo);
+              }}
             />
           </FormGroup>
         </DialogContent>
