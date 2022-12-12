@@ -11,7 +11,6 @@ const Descuento = () => {
       })
       .then((responseJson) => {
         setDescuentos(responseJson);
-        console.log(responseJson);
       });
   }, []);
 

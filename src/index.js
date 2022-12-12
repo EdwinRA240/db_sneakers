@@ -12,6 +12,7 @@ import Marca from "./views/Marca";
 import Cliente from "./views/Cliente";
 import Descuento from "./views/Descuento";
 import Sucursal from "./views/Sucursal";
+import CargoEpl from "./views/CargoEpl";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,6 +30,7 @@ root.render(
         <Route path="/Cliente" element={<Cliente />} />
         <Route path="/Descuento" element={<Descuento />} />
         <Route path="/Sucursal" element={<Sucursal />} />
+        <Route path="/CargoEpl" element={<CargoEpl />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
