@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import StorageIcon from "@mui/icons-material/Storage";
 
-const pages = ["Empleados", "Direccion", "Modelo", "Marca"];
+const pages = ["Empleados", "Direccion", "Modelo", "Marca", "Cliente"];
 const settings = ["Cuenta", "Cerrar sesion"];
 
 function NavBar() {

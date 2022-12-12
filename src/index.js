@@ -9,6 +9,7 @@ import Direccion from "./views/Direccion";
 import NotFound from "./views/NotFound";
 import Modelo from "./views/Modelo";
 import Marca from "./views/Marca";
+import Cliente from "./views/Cliente";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/Direccion" element={<Direccion />} />
         <Route path="/Modelo" element={<Modelo />} />
         <Route path="/Marca" element={<Marca />} />
+        <Route path="/Cliente" element={<Cliente />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
