@@ -5,7 +5,7 @@ const Modelos = () => {
   const [Modelos, setModelos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/Modelos")
+    fetch("http://localhost:5000/Modelo")
       .then((response) => {
         return response.json();
       })
