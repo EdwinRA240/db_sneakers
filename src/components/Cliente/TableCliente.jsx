@@ -1,7 +1,6 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
 import * as React from "react";
-import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,7 +15,6 @@ import AlertDialogAddCliente from "./AlertDialogAddCliente";
 import AlertDialogUpdateCliente from "./AlertDialogUpdateCliente";
 
 export default function TableDireccion(props) {
-  const [Columnas, setColumnas] = useState([]);
 
   const handleRefresh = () => {
     window.location.reload(false);
@@ -29,9 +27,6 @@ export default function TableDireccion(props) {
           <TableHead>
             <TableRow>
               {props.data.metaData?.map((e, i) => {
-                if (Columnas.includes(e.name) == false) {
-                  setColumnas(Columnas.push(e.name));
-                }
                 if (i != 0) {
                   return (
                     <TableCell key={i} align="center">
@@ -50,23 +45,12 @@ export default function TableDireccion(props) {
               </TableCell>
             </TableRow>
           </TableHead>
-          {console.log(Columnas)}
           <TableBody>
             {props.data.rows?.map((e) => (
               <TableRow
                 key={e.CLAVE}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                {/* {Columnas.map((col, i) => {
-                  if (i != 0) {
-                    return (
-                      <TableCell key={i} align="center">
-                        {e`.${col}`}
-                      </TableCell>
-                    );
-                  }
-                })} */}
-
                 <TableCell align="center">{e.NOMBRE}</TableCell>
                 <TableCell align="center">{e.APELLIDO_PAT}</TableCell>
                 <TableCell align="center">{e.APELLIDO_MAT}</TableCell>
