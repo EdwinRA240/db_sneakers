@@ -3,16 +3,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
+import AddIcon from "@mui/icons-material/Add";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useState } from "react";
 
-export default function AlertDialogUpdateDireccion(props) {
+export default function AlertDialog() {
   const [open, setOpen] = useState(false);
-  const [CargoEpl, setCargoEpl] = useState(1);
+  const [Proposito, setProposito] = useState(1);
   const [Data, setData] = useState({
     ID: "",
-    CARGO_EPL: "",
+    PROPOSITO: "",
   });
 
   const handleClickOpen = () => {
@@ -25,15 +25,13 @@ export default function AlertDialogUpdateDireccion(props) {
 
   const handleSetData = () => {
     setData({
-      ID: props.data.ID,
-      CARGO_EPL: CargoEpl,
+      ID: 1,
+      PROPOSITO: Proposito,
     });
     console.log(JSON.stringify(Data));
-  };
 
-  const handleSQL = () => {
-    fetch("http://localhost:5000/CargoEpl", {
-      method: "PUT",
+    fetch("http://localhost:5000/Proposito", {
+      method: "POST",
       body: JSON.stringify(Data),
       headers: {
         "Content-Type": "application/json",
@@ -44,42 +42,35 @@ export default function AlertDialogUpdateDireccion(props) {
       .then((response) => {
         console.log("Success:", response);
         handleClose();
-        window.location.reload(false);
+        window.location.reload(false); //refresh
       });
   };
 
   return (
     <>
-      <IconButton aria-label="Update" onClick={handleClickOpen}>
-        <UpgradeIcon />
+      <IconButton aria-label="delete" onClick={handleClickOpen}>
+        <AddIcon />
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">Remplazar cargo</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Agregar un nuevo proposito</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.CARGO}
-              onChange={(event) => {
-                setCargoEpl(event.target.value);
-                setData({
-                  ID: props.data.ID,
-                });
-              }}
+              label="Proposito"
+              onChange={(event) => setProposito(event.target.value)}
             />
           </FormGroup>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
+          <Button onClick={handleSetData} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

@@ -9,10 +9,10 @@ import { React, useState } from "react";
 
 export default function AlertDialogUpdateDireccion(props) {
   const [open, setOpen] = useState(false);
-  const [CargoEpl, setCargoEpl] = useState(1);
+  const [Proposito, setProposito] = useState(1);
   const [Data, setData] = useState({
     ID: "",
-    CARGO_EPL: "",
+    PROPOSITO: "",
   });
 
   const handleClickOpen = () => {
@@ -26,13 +26,13 @@ export default function AlertDialogUpdateDireccion(props) {
   const handleSetData = () => {
     setData({
       ID: props.data.ID,
-      CARGO_EPL: CargoEpl,
+      PROPOSITO: Proposito,
     });
     console.log(JSON.stringify(Data));
   };
 
   const handleSQL = () => {
-    fetch("http://localhost:5000/CargoEpl", {
+    fetch("http://localhost:5000/Proposito", {
       method: "PUT",
       body: JSON.stringify(Data),
       headers: {
@@ -61,15 +61,15 @@ export default function AlertDialogUpdateDireccion(props) {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">Remplazar cargo</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Remplazar proposito</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label={props.data.CARGO}
+              label={props.data.PROPOSITO}
               onChange={(event) => {
-                setCargoEpl(event.target.value);
+                setProposito(event.target.value);
                 setData({
                   ID: props.data.ID,
                 });
