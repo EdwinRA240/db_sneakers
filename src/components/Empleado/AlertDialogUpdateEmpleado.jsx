@@ -3,19 +3,24 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import FormControlDireccion from "../Form's/FormControlCP";
+import FormControlCP from "../Form's/FormControlCP";
+import FormControlSucursal from "../Form's/FormControlSucursal";
+import FormControlCargo from "../Form's/FormControlCargo";
 
-export default function AlertDialogAddDireccion() {
+export default function AlertDialog(props) {
+  const [CargoEpls, setCargoEpls] = useState([]);
+  const [Sucursales, setSucursales] = useState([]);
   const [Direcciones, setDirecciones] = useState([]);
   const [Dir, setDir] = useState([]);
   const [Nombre, setNombre] = useState(1);
   const [ApellidoP, setApellidoP] = useState("");
   const [ApellidoM, setApellidoM] = useState("");
   const [Correo, setCorreo] = useState("");
-  // const [Alcal_Mun, setAlcal_Mun] = useState("");
+  const [CargoEpl, setCargoEpl] = useState("");
+  const [SucursalClave, setSucursalClave] = useState("");
   const [open, setOpen] = useState(false);
   const [Data, setData] = useState({
     CLAVE: "",
@@ -23,17 +28,34 @@ export default function AlertDialogAddDireccion() {
     APELLIDO_PAT: "",
     APELLIDO_MAT: "",
     CORREO: "",
-    ID: "",
+    CARGO_EPL: "",
+    SUCURSAL_CLAVE: "",
+    DIRECION_ID: "",
   });
 
   useEffect(() => {
+    fetch("http://localhost:5000/CargoEpl")
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        setCargoEpls(responseJson);
+      });
+
+    fetch("http://localhost:5000/Sucursal")
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        setSucursales(responseJson);
+      });
+
     fetch("http://localhost:5000/direccion")
       .then((response) => {
         return response.json();
       })
       .then((responseJson) => {
         setDirecciones(responseJson);
-        // console.log(responseJson);
       });
   }, []);
 
@@ -47,19 +69,20 @@ export default function AlertDialogAddDireccion() {
 
   const handleSetData = () => {
     setData({
-      CLAVE: "CL",
+      CLAVE: props.data.CLAVE,
       NOMBRE: Nombre,
       APELLIDO_PAT: ApellidoP,
       APELLIDO_MAT: ApellidoM,
       CORREO: Correo,
-      ID_DIR: Dir,
+      CARGO_EPL: parseInt(CargoEpl),
+      SUCURSAL_CLAVE: SucursalClave,
+      DIRECION_ID: Dir,
     });
     console.log(Data);
   };
-
   const handleSQL = () => {
-    fetch("http://localhost:5000/Cliente", {
-      method: "POST",
+    fetch("http://localhost:5000/Empleado", {
+      method: "PUT",
       body: JSON.stringify(Data),
       headers: {
         "Content-Type": "application/json",
@@ -73,11 +96,10 @@ export default function AlertDialogAddDireccion() {
         window.location.reload(false); //refresh
       });
   };
-
   return (
     <>
       <IconButton aria-label="delete" onClick={handleClickOpen}>
-        <AddIcon />
+        <UpgradeIcon />
       </IconButton>
       <Dialog
         open={open}
@@ -87,36 +109,49 @@ export default function AlertDialogAddDireccion() {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        {/* {console.log(DatosHijo)} */}
-        <DialogTitle id="alert-dialog-title">Agregar un nuevo cliente</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Actualizar empleado</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Nombre"
+              label={props.data.NOMBRE}
               onChange={(event) => setNombre(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
+              label={props.data.APELLIDO_PAT}
               onChange={(event) => setApellidoP(event.target.value)}
-              label="ApellidoP"
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="ApellidoM"
+              label={props.data.APELLIDO_MAT}
               onChange={(event) => setApellidoM(event.target.value)}
             />
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Correo"
+              label={props.data.CORREO}
               onChange={(event) => setCorreo(event.target.value)}
             />
-            <FormControlDireccion
-              nombre={"Codigo Postal"}
+            <FormControlCargo
+              nombre={props.data.CARGO}
+              opciones={CargoEpls.rows}
+              funcion={(hijo) => {
+                setCargoEpl(hijo);
+              }}
+            />
+            <FormControlSucursal
+              nombre={props.data.NOMBRE_S}
+              opciones={Sucursales.rows}
+              funcion={(hijo) => {
+                setSucursalClave(hijo);
+              }}
+            />
+            <FormControlCP
+              nombre={props.data.CODIGO_POSTAL}
               opciones={Direcciones.rows}
               funcion={(hijo) => {
                 setDir(hijo);

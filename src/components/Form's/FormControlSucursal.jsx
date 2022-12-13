@@ -5,8 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function FormControlDireccion(props) {
-  const [value, setvalue] = React.useState("DIR49");
+export default function FormControlSucursal(props) {
+  const [value, setvalue] = React.useState("");
 
   return (
     <Box sx={{ minWidth: 120, mt: 2 }}>
@@ -21,14 +21,13 @@ export default function FormControlDireccion(props) {
             setvalue(event.target.value);
             props.funcion(value);
           }}
-          onClick={(event) => {
-            // setvalue(event.target.value);
+          onFocus={(event) => {
             props.funcion(value);
           }}
         >
           {props.opciones?.map((e) => (
-            <MenuItem value={e.ID} key={e.ID}>
-              {e.CODIGO_POSTAL}
+            <MenuItem value={e.CLAVE} key={e.CLAVE}>
+              {e.NOMBRE}
             </MenuItem>
           ))}
         </Select>

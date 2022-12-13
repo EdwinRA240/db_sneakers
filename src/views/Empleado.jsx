@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import TableB from "../components/Empleado/TableEmpleados";
 
 const Empleados = () => {
-  const [Empleados, setEmpleados] = useState([]);
+  const [Empleado, setEmpleado] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/empleados")
+    fetch("http://localhost:5000/Empleado")
       .then((response) => {
         return response.json();
       })
       .then((responseJson) => {
-        setEmpleados(responseJson);
+        setEmpleado(responseJson);
         console.log(responseJson);
       });
   }, []);
 
   return (
     <>
-      <TableB data = {Empleados}/>
+      <TableB data = {Empleado}/>
     </>
   );
 };

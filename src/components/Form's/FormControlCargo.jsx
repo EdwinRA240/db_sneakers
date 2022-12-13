@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function FormControlEstados(props) {
+export default function FormControlSucursal(props) {
   const [value, setvalue] = React.useState("");
 
   return (
@@ -27,7 +27,7 @@ export default function FormControlEstados(props) {
         >
           {props.opciones?.map((e) => (
             <MenuItem value={e.ID} key={e.ID}>
-              {e.ESTADO}
+              {e.CARGO}
             </MenuItem>
           ))}
         </Select>

@@ -29,7 +29,8 @@ export default function AlertDialogUpdate(props) {
       DESCUENTO: parseFloat(Descuento),
     });
     console.log(JSON.stringify(Data));
-
+  };
+  const handleSQL = () => {
     fetch("http://localhost:5000/Descuento", {
       method: "PUT",
       body: JSON.stringify(Data),
@@ -45,7 +46,6 @@ export default function AlertDialogUpdate(props) {
         window.location.reload(false);
       });
   };
-
   return (
     <>
       <IconButton aria-label="Update" onClick={handleClickOpen}>
@@ -77,7 +77,7 @@ export default function AlertDialogUpdate(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

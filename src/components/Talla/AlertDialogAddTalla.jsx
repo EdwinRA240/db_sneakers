@@ -29,7 +29,8 @@ export default function AlertDialog() {
       TALLA: Talla,
     });
     console.log(JSON.stringify(Data));
-
+  };
+  const handleSQL = () => {
     fetch("http://localhost:5000/Talla", {
       method: "POST",
       body: JSON.stringify(Data),
@@ -45,18 +46,12 @@ export default function AlertDialog() {
         window.location.reload(false); //refresh
       });
   };
-
   return (
     <>
       <IconButton aria-label="delete" onClick={handleClickOpen}>
         <AddIcon />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        fullWidth={true}
-        maxWidth={"sm"}
-      >
+      <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={"sm"}>
         <DialogTitle id="alert-dialog-title">Agregar una nueva talla</DialogTitle>
         <DialogContent>
           <FormGroup>
@@ -70,7 +65,7 @@ export default function AlertDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

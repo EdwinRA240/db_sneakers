@@ -20,7 +20,7 @@ export default function AlertDialogDelete(props) {
   };
 
   const handleDelete = () => {
-    fetch("http://localhost:5000/empleados", {
+    fetch("http://localhost:5000/Empleado", {
       method: "DELETE",
       body: JSON.stringify(props.data),
       headers: {
@@ -29,9 +29,11 @@ export default function AlertDialogDelete(props) {
     })
       .then((res) => res.json())
       .catch((error) => console.error("Error:", error))
-      .then((response) => console.log("Success:", response));
-
-    handleClose();
+      .then((response) => {
+        console.log("Success:", response);
+        handleClose();
+        window.location.reload(false); //refresh
+      });
   };
 
   return (

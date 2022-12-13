@@ -62,7 +62,8 @@ export default function AlertDialogAddDireccion() {
       NUMERO_INT: parseInt(No_Interior),
     });
     // console.log(JSON.stringify(Data));
-
+  };
+  const handleSQL = () => {
     fetch("http://localhost:5000/direccion", {
       method: "POST",
       body: JSON.stringify(Data),
@@ -99,7 +100,9 @@ export default function AlertDialogAddDireccion() {
             <FormControlEstados
               nombre={"Estado"}
               opciones={Estados.rows}
-              funcion={(hijo)=> {setEstado(hijo)}}
+              funcion={(hijo) => {
+                setEstado(hijo);
+              }}
             />
             <TextField
               fullWidth
@@ -140,7 +143,7 @@ export default function AlertDialogAddDireccion() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

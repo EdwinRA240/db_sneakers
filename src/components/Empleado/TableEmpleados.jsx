@@ -7,10 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Container, IconButton } from "@mui/material";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
 import AlertDialogDeleteEmpleado from "./AlertDialogDeleteEmpleado";
-import AddIcon from "@mui/icons-material/Add";
+import AlertDialogUpdateEmpleado from "./AlertDialogUpdateEmpleado";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import AlertDialogAddDireccion from "./AlertDialogAddEmpleado";
 
 export default function TableB(props) {
   const handleRefresh = () => {
@@ -28,15 +28,13 @@ export default function TableB(props) {
               <TableCell align="center">CORREO</TableCell>
               <TableCell align="center">CARGO</TableCell>
               <TableCell align="center">SUCURSAL</TableCell>
-              <TableCell align="center">DIRECCION</TableCell>
+              <TableCell align="center">CODIGO_POSTAL</TableCell>
               <TableCell align="center">
-                <IconButton href="/Empleados/Insert">
-                  <AddIcon />
-                </IconButton>
+                <AlertDialogAddDireccion data={props.data.rows} />
               </TableCell>
               <TableCell align="center">
-                <IconButton onClick = {handleRefresh}>
-                  <RefreshIcon/>
+                <IconButton onClick={handleRefresh}>
+                  <RefreshIcon />
                 </IconButton>
               </TableCell>
             </TableRow>
@@ -53,14 +51,12 @@ export default function TableB(props) {
                 <TableCell align="center">{e.CORREO}</TableCell>
                 <TableCell align="center">{e.CARGO}</TableCell>
                 <TableCell align="center">{e.NOMBRE_S}</TableCell>
-                <TableCell align="center">{e.ESTADO}</TableCell>
+                <TableCell align="center">{e.CODIGO_POSTAL}</TableCell>
                 <TableCell align="center">
                   <AlertDialogDeleteEmpleado data={e} />
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton href="/Empleados/Insert">
-                    <UpgradeIcon />
-                  </IconButton>
+                  <AlertDialogUpdateEmpleado data={e} />
                 </TableCell>
               </TableRow>
             ))}

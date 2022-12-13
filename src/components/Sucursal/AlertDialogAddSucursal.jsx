@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import FormControlDireccion from "../Form's/FormControlDireccion";
+import FormControlDireccion from "../Form's/FormControlCP";
 
 export default function AlertDialogAddDireccion() {
   const [Direcciones, setDirecciones] = useState([]);
@@ -58,7 +58,8 @@ export default function AlertDialogAddDireccion() {
       ID_DIR: Dir,
     });
     console.log(Data);
-
+  };
+  const handleSQL = () => {
     fetch("http://localhost:5000/Sucursal", {
       method: "POST",
       body: JSON.stringify(Data),
@@ -74,7 +75,6 @@ export default function AlertDialogAddDireccion() {
         window.location.reload(false); //refresh
       });
   };
-
   return (
     <>
       <IconButton aria-label="delete" onClick={handleClickOpen}>
@@ -133,7 +133,7 @@ export default function AlertDialogAddDireccion() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

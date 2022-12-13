@@ -7,7 +7,7 @@ import { IconButton } from "@mui/material";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import FormControlDireccion from "../Form's/FormControlDireccion";
+import FormControlDireccion from "../Form's/FormControlCP";
 
 export default function AlertDialogUpdateDireccion(props) {
   const [Direcciones, setDirecciones] = useState([]);
@@ -59,7 +59,9 @@ export default function AlertDialogUpdateDireccion(props) {
       ID_DIR: Dir,
     });
     console.log(Data);
+  };
 
+  const handleSQL = () => {
     fetch("http://localhost:5000/Sucursal", {
       method: "PUT",
       body: JSON.stringify(Data),
@@ -90,7 +92,7 @@ export default function AlertDialogUpdateDireccion(props) {
         maxWidth={"sm"}
       >
         {/* {console.log(DatosHijo)} */}
-        <DialogTitle id="alert-dialog-title">Agregar un nueva sucursal</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Actualizar una sucursal</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
@@ -134,7 +136,7 @@ export default function AlertDialogUpdateDireccion(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

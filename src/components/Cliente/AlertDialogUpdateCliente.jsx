@@ -7,7 +7,7 @@ import { IconButton } from "@mui/material";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import FormControlDireccion from "../Form's/FormControlDireccion";
+import FormControlDireccion from "../Form's/FormControlCP";
 
 export default function AlertDialogUpdateDireccion(props) {
   const [Direcciones, setDirecciones] = useState([]);
@@ -16,7 +16,6 @@ export default function AlertDialogUpdateDireccion(props) {
   const [ApellidoP, setApellidoP] = useState("");
   const [ApellidoM, setApellidoM] = useState("");
   const [Correo, setCorreo] = useState("");
-  // const [Alcal_Mun, setAlcal_Mun] = useState("");
   const [open, setOpen] = useState(false);
   const [Data, setData] = useState({
     CLAVE: "",
@@ -56,7 +55,9 @@ export default function AlertDialogUpdateDireccion(props) {
       ID_DIR: Dir,
     });
     console.log(Data);
+  };
 
+  const handleSQL = () => {
     fetch("http://localhost:5000/Cliente", {
       method: "PUT",
       body: JSON.stringify(Data),
@@ -120,13 +121,15 @@ export default function AlertDialogUpdateDireccion(props) {
             <FormControlDireccion
               nombre={"Codigo Postal"}
               opciones={Direcciones.rows}
-              funcion={(hijo)=> {setDir(hijo)}}
+              funcion={(hijo) => {
+                setDir(hijo);
+              }}
             />
           </FormGroup>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
