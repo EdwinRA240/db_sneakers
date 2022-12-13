@@ -3,16 +3,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { Button, FormGroup, TextField } from "@mui/material";
 import { React, useState } from "react";
 
-export default function AlertDialog() {
+export default function AlertDialogUpdateDireccion(props) {
   const [open, setOpen] = useState(false);
-  const [Cargo, setCargo] = useState(1);
+  const [Talla, setTalla] = useState(1);
   const [Data, setData] = useState({
     ID: "",
-    CARGO_EPL: "",
+    TALLA: "",
   });
 
   const handleClickOpen = () => {
@@ -25,13 +25,15 @@ export default function AlertDialog() {
 
   const handleSetData = () => {
     setData({
-      ID: 1,
-      CARGO_EPL: Cargo,
+      ID: props.data.ID,
+      TALLA: Talla,
     });
     console.log(JSON.stringify(Data));
+  };
 
-    fetch("http://localhost:5000/CargoEpl", {
-      method: "POST",
+  const handleSQL = () => {
+    fetch("http://localhost:5000/Talla", {
+      method: "PUT",
       body: JSON.stringify(Data),
       headers: {
         "Content-Type": "application/json",
@@ -42,35 +44,42 @@ export default function AlertDialog() {
       .then((response) => {
         console.log("Success:", response);
         handleClose();
-        window.location.reload(false); //refresh
+        window.location.reload(false);
       });
   };
 
   return (
     <>
-      <IconButton aria-label="delete" onClick={handleClickOpen}>
-        <AddIcon />
+      <IconButton aria-label="Update" onClick={handleClickOpen}>
+        <UpgradeIcon />
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">Agregar una nuevo cargo</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Remplazar talla</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Cargo"
-              onChange={(event) => setCargo(event.target.value)}
+              label={props.data.TALLA}
+              onChange={(event) => {
+                setTalla(event.target.value);
+                setData({
+                  ID: props.data.ID,
+                });
+              }}
             />
           </FormGroup>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

@@ -9,10 +9,10 @@ import { React, useState } from "react";
 
 export default function AlertDialog() {
   const [open, setOpen] = useState(false);
-  const [Cargo, setCargo] = useState(1);
+  const [Talla, setTalla] = useState(1);
   const [Data, setData] = useState({
     ID: "",
-    CARGO_EPL: "",
+    TALLA: "",
   });
 
   const handleClickOpen = () => {
@@ -26,11 +26,11 @@ export default function AlertDialog() {
   const handleSetData = () => {
     setData({
       ID: 1,
-      CARGO_EPL: Cargo,
+      TALLA: Talla,
     });
     console.log(JSON.stringify(Data));
 
-    fetch("http://localhost:5000/CargoEpl", {
+    fetch("http://localhost:5000/Talla", {
       method: "POST",
       body: JSON.stringify(Data),
       headers: {
@@ -57,14 +57,14 @@ export default function AlertDialog() {
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle id="alert-dialog-title">Agregar una nuevo cargo</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Agregar una nueva talla</DialogTitle>
         <DialogContent>
           <FormGroup>
             <TextField
               fullWidth
               sx={{ mt: 2 }}
-              label="Cargo"
-              onChange={(event) => setCargo(event.target.value)}
+              label="Talla"
+              onChange={(event) => setTalla(event.target.value)}
             />
           </FormGroup>
         </DialogContent>

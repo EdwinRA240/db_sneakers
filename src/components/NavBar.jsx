@@ -19,11 +19,11 @@ const pages = [
   "Modelo",
   "Marca",
   "Proposito",
+  "Talla",
   "Cliente",
   "Descuento",
   "Sucursal",
   "CargoEpl",
-
 ];
 const settings = ["Cuenta", "Cerrar sesion"];
 
