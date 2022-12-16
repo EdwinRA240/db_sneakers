@@ -29,7 +29,9 @@ export default function AlertDialog() {
       CARGO_EPL: Cargo,
     });
     console.log(JSON.stringify(Data));
+  };
 
+  const handleSQL = () => {
     fetch("http://localhost:5000/CargoEpl", {
       method: "POST",
       body: JSON.stringify(Data),
@@ -51,12 +53,7 @@ export default function AlertDialog() {
       <IconButton aria-label="delete" onClick={handleClickOpen}>
         <AddIcon />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        fullWidth={true}
-        maxWidth={"sm"}
-      >
+      <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={"sm"}>
         <DialogTitle id="alert-dialog-title">Agregar una nuevo cargo</DialogTitle>
         <DialogContent>
           <FormGroup>
@@ -70,7 +67,7 @@ export default function AlertDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleSetData} autoFocus>
+          <Button onFocus={handleSetData} onClick={handleSQL} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
