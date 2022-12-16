@@ -20,7 +20,7 @@ export default function TableDescuento(props) {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ py: 4 }}>
+    <Container maxWidth="sm" sx={{ mt: 12, mb: 5 }}>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>

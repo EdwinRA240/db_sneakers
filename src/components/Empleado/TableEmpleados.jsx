@@ -17,7 +17,7 @@ export default function TableB(props) {
     window.location.reload(false);
   };
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 12, mb: 5 }}>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>

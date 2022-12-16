@@ -21,8 +21,8 @@ root.render(
     <NavBar />
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Main />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/Empleado" element={<Empleado />} />
         <Route path="/Direccion" element={<Direccion />} />
         <Route path="/Modelo" element={<Modelo />} />

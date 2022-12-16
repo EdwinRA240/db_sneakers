@@ -15,17 +15,17 @@ import StorageIcon from "@mui/icons-material/Storage";
 
 const pages = [
   "Empleado",
-  "Direccion",
+  "CargoEpl",
   "Modelo",
   "Marca",
   "Proposito",
   "Talla",
-  "Cliente",
-  "Descuento",
+  "Direccion",
   "Sucursal",
-  "CargoEpl",
+  "Descuento",
+  "Cliente",
 ];
-const settings = ["Cuenta", "Cerrar sesion"];
+const settings = ["Account", "Sign out"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,7 +47,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* NavBar Escritorio */}
@@ -56,7 +56,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href=""
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -118,7 +118,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -153,6 +153,7 @@ function NavBar() {
               </IconButton>
             </Tooltip>
             <Menu
+              href="/"
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -170,7 +171,9 @@ function NavBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Button href="/" textAlign="center">
+                    {setting}
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
