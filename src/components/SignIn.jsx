@@ -39,20 +39,20 @@ export default function SignIn() {
 
     console.log(Data);
   };
-  
-  const handleSetData = () =>{
 
-    // if (Data.password === "PassUser") {
-    //   alert("Again! Password");
-    //   this.props.history.push('/foo');
-    //   return ;
-    // }
-    
-  };
-  
+  // const handleSetData = () =>{
+
+  //   // if (Data.password === "PassUser") {
+  //   //   alert("Again! Password");
+  //   //   this.props.history.push('/foo');
+  //   //   return ;
+  //   // }
+
+  // };
+
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" sx={{ mt: 20, mb: 5 }}>
+      <Container component="main" maxWidth="xs" sx={{ mt: 22, mb: 5 }}>
         <CssBaseline />
         <Box
           sx={{
@@ -71,7 +71,7 @@ export default function SignIn() {
           <Box
             component="form"
             onBlur={handleSubmit}
-            onSubmit={handleSetData}
+            // onSubmit={handleSetData}
             noValidate
             href="/Empleado"
             sx={{ mt: 1 }}
@@ -96,7 +96,13 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button type="submit" href="/Empleado" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              href="/Empleado"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign In
             </Button>
             <Grid container>
